@@ -7,5 +7,7 @@ describe('reducer', () => {
   });
   it('should have change currentLanguage to bn when toggleAction Called', () => {
     expect(reducer(undefined, toggleLanguage()).currentLanguage).toEqual('bn');
+    expect(reducer(undefined, toggleLanguage()).currentLanguage).toEqual('en');
+    expect(reducer(undefined, toggleLanguage()).currentLanguage).toEqual('bn');
   });
 });
