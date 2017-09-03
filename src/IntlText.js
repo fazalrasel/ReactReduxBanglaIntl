@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 class IntlText extends React.Component {
   render() {
     const { en, bn, language } = this.props;
-    console.log(language);
     return (
       <span>{language === 'bn' ? bn : en}</span>
     )
