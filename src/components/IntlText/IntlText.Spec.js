@@ -9,7 +9,7 @@ const middlewares = [];
 const mockStore = configureStore(middlewares);
 
 
-describe.only('IntlText', () => {
+describe('IntlText', () => {
   let wrapper = undefined;
   let testProps = { en: 'Language', bn: 'বাংলা' };
   let store = undefined;
