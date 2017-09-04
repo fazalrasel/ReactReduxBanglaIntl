@@ -12,6 +12,8 @@ let banglaNumberMap = {
 };
 
 const getDigitBanglaFromEnglish = function (value) {
+  if (value === undefined || value.length < 0) return value;
+  value = value.toString();
   for (let x in banglaNumberMap) {
     value = value.replace(new RegExp(x, 'g'), banglaNumberMap[x]);
   }
