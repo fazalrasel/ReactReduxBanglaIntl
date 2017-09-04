@@ -6,8 +6,10 @@ const initialState = {
 function languageProviderReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_LANGUAGE: {
-      state.currentLanguage = (state.currentLanguage === 'en') ? 'bn' : 'en';
-      return state;
+      console.log(state.currentLanguage);
+      return Object.assign({}, state, {
+        currentLanguage: ("en" === state.currentLanguage) ? "bn" : "en",
+      })
     }
     default:
       return state;
