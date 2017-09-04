@@ -22,8 +22,6 @@ Depending on the size of the project, if it is small and simple enough the refer
 
 ## Contributors
 
-Contributing
-
 Any suggestion is welcome.
 
 ## License
