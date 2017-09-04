@@ -1,0 +1,53 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import englishToBanglaNumber from './../../util/englishToBanglaNumber';
+
+class IntlCurrency extends React.Component {
+  render() {
+    const { value, language } = this.props;
+    const getEnglish = () => {
+      const { enSymbol, enSymbolPosition } = this.props;
+      if (enSymbolPosition === 'right') {
+        return value + enSymbol;
+      }
+      return enSymbol + value;
+    };
+    const getBangla = () => {
+      const { bnSymbol, bnSymbolPosition } = this.props;
+      if (bnSymbolPosition === 'right') {
+        return englishToBanglaNumber(value) + bnSymbol;
+      }
+      return bnSymbol + englishToBanglaNumber(value);
+    };
+    return (
+      <span>{language === 'bn' ? getBangla() : getEnglish()}</span>
+    )
+  }
+}
+
+IntlCurrency.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  enSymbol: PropTypes.string,
+  bnSymbol: PropTypes.string,
+  enSymbolPosition: PropTypes.string,
+  bnSymbolPosition: PropTypes.string,
+};
+
+IntlCurrency.defaultProps = {
+  enSymbol: 'BDT',
+  bnSymbol: 'টাকা',
+  enSymbolPosition: 'left',
+  bnSymbolPosition: 'left'
+};
+
+function mapStateToProps(state) {
+  return {
+    language: state.currentLanguage
+  }
+}
+
+export default connect(mapStateToProps)(IntlCurrency);
