@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 class IntlText extends React.Component {
   render() {
-    const { en, bn, locale } = this.props;
+    const { en, bn, currentLanguage, className, style } = this.props;
     return (
-      <span>{locale && locale.currentLanguage === 'bn' ? bn : en}</span>
+      <span className={className}
+            style={style} >{currentLanguage === 'bn' ? bn : en}</span>
     )
   }
 }
@@ -16,8 +16,17 @@ IntlText.propTypes = {
 };
 
 function mapStateToProps(state) {
+  const isMap = state instanceof Map;
+  let currentLanguage = undefined;
+  if (isMap) {
+    currentLanguage = state.getIn(['locale', 'currentLanguage']);
+  } else {
+    if (state.locale && state.locale.currentLanguage) {
+      currentLanguage = state.locale.currentLanguage;
+    }
+  }
   return {
-    locale: state.locale
+    currentLanguage
   }
 }
 

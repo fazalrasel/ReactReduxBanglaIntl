@@ -9,13 +9,15 @@ const middlewares = [];
 const mockStore = configureStore(middlewares);
 
 
-describe('IntlNumber', () => {
+describe.only('IntlNumber', () => {
   let wrapper = undefined;
   let testProps = { value: 1234 };
   let defaultStore = undefined;
   let wrapperGenerator = undefined;
   let initialState = {
-    currentLanguage: 'en'
+    locale: {
+      currentLanguage: 'en'
+    }
   };
 
   beforeEach(() => {
@@ -37,7 +39,9 @@ describe('IntlNumber', () => {
 
   it('Should change to bangla when toggleLanguage action fired', () => {
     defaultStore = mockStore({
-      currentLanguage: 'bn'
+      locale: {
+        currentLanguage: 'bn'
+      }
     });
     wrapper = wrapperGenerator(defaultStore, testProps);
     expect(wrapper.find('span').text()).toEqual('১২৩৪');

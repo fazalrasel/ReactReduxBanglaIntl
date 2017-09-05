@@ -1,27 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import englishToBanglaNumber from './../../util/englishToBanglaNumber';
 
 class IntlCurrency extends React.Component {
   render() {
-    const { value, locale } = this.props;
+    const { value, currentLanguage, enSymbol, enSymbolPosition, bnSymbol, bnSymbolPosition, className, style } = this.props;
     const getEnglish = () => {
-      const { enSymbol, enSymbolPosition } = this.props;
       if (enSymbolPosition === 'right') {
         return value + enSymbol;
       }
       return enSymbol + value;
     };
     const getBangla = () => {
-      const { bnSymbol, bnSymbolPosition } = this.props;
       if (bnSymbolPosition === 'right') {
         return englishToBanglaNumber(value) + bnSymbol;
       }
       return bnSymbol + englishToBanglaNumber(value);
     };
     return (
-      <span>{locale && locale.currentLanguage === 'bn' ? getBangla() : getEnglish()}</span>
+      <span className={className}
+            style={style} >{currentLanguage === 'bn' ? getBangla() : getEnglish()}</span>
     )
   }
 }
@@ -45,8 +43,17 @@ IntlCurrency.defaultProps = {
 };
 
 function mapStateToProps(state) {
+  const isMap = state instanceof Map;
+  let currentLanguage = undefined;
+  if (isMap) {
+    currentLanguage = state.getIn(['locale', 'currentLanguage']);
+  } else {
+    if (state.locale && state.locale.currentLanguage) {
+      currentLanguage = state.locale.currentLanguage;
+    }
+  }
   return {
-    locale: state.locale
+    currentLanguage
   }
 }
 
