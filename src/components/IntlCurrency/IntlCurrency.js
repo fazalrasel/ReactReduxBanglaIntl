@@ -5,7 +5,7 @@ import englishToBanglaNumber from './../../util/englishToBanglaNumber';
 
 class IntlCurrency extends React.Component {
   render() {
-    const { value, language } = this.props;
+    const { value, locale } = this.props;
     const getEnglish = () => {
       const { enSymbol, enSymbolPosition } = this.props;
       if (enSymbolPosition === 'right') {
@@ -21,7 +21,7 @@ class IntlCurrency extends React.Component {
       return bnSymbol + englishToBanglaNumber(value);
     };
     return (
-      <span>{language === 'bn' ? getBangla() : getEnglish()}</span>
+      <span>{locale && locale.currentLanguage === 'bn' ? getBangla() : getEnglish()}</span>
     )
   }
 }
@@ -46,7 +46,7 @@ IntlCurrency.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    language: state.currentLanguage
+    locale: state.locale
   }
 }
 

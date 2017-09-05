@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import englishToBanglaNumber from './../../util/englishToBanglaNumber';
 class IntlNumber extends React.Component {
   render() {
-    const { value, language } = this.props;
+    const { value, locale } = this.props;
     return (
-      <span>{language === 'bn' ? englishToBanglaNumber(value) : value}</span>
+      <span>{locale && locale.currentLanguage === 'bn' ? englishToBanglaNumber(value) : value}</span>
     )
   }
 }
@@ -20,7 +20,7 @@ IntlNumber.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    language: state.currentLanguage
+    locale: state.locale
   }
 }
 
