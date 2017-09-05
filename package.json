@@ -1,6 +1,6 @@
 {
   "name": "react-redux-bangla-intl",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./jsdom.js \"./src/**/*.[Ss]pec.js\"",
