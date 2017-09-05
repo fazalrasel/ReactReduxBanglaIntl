@@ -37,8 +37,10 @@ if (process.env.NODE_ENV === 'production') {
   WebpackConfig.externals = {
     'react': 'react',
     'react-dom': 'react-dom',
+    'prop-types': 'prop-types',
     'redux': 'redux',
-    'react-redux': 'react-redux'
+    'react-redux': 'react-redux',
+    'immutable': 'immutable'
   };
 
   WebpackConfig.plugins = [
