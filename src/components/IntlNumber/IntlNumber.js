@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { isImmutableMap } from './../../util/immutableCheck';
 import englishToBanglaNumber from './../../util/englishToBanglaNumber';
 class IntlNumber extends React.Component {
   render() {
@@ -19,7 +20,7 @@ IntlNumber.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const isMap = state instanceof Map;
+  const isMap = isImmutableMap(state);
   let currentLanguage = undefined;
   if (isMap) {
     currentLanguage = state.getIn(['locale', 'currentLanguage']);
