@@ -22,10 +22,12 @@ import { combineReducers } from 'redux';
 #import { combineReducers } from 'redux-immutable'; // when immutablejs used.
 ```
 
+```
 const store = combineReducers({
     ..other reducers..
     locale : BanglaIntlReducer,
 });
+```
 
 export default store;
 
