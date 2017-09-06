@@ -33,7 +33,62 @@ export default store;
 
 ## API Reference
 
-Will be added soon.
+#### Changing `currentLanguage`
+You need to dispatch actions to reducer to change `currentLanguage`. It can be done by direct dispatching action 
+or from inside redux connected component (mapDispatchToProps).
+
+```
+import {toggleLanguage} from 'react-redux-bangla-intl';
+
+store.dispatch(toggleLanguage());
+
+```
+
+#### components
+
+###### IntlText
+```
+props {
+    en,
+    bn
+}
+
+import {IntlText} from 'react-redux-bangla-intl';
+
+<IntlText en="Bangladesh" bn="বাংলাদেশ"/>
+
+```
+
+###### IntlNumber
+```
+props {
+    value
+}
+
+import {IntlNumber} from 'react-redux-bangla-intl';
+
+<IntlNumber value="1234" />
+
+```
+
+###### IntlCurrency
+```
+props {
+  value: '', // string or number
+  enSymbol: 'BDT', // any string
+  bnSymbol: 'টাকা', // any string
+  enSymbolPosition: 'left', //right
+  bnSymbolPosition: 'left' // right
+}
+
+import {IntlCurrency} from 'react-redux-bangla-intl';
+
+<IntlCurrency value="5050" />
+
+```
+
+
+
 
 ## Tests
 
