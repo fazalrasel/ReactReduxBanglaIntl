@@ -10,7 +10,24 @@ It will work as it just simple javascript.
 
 ## Installation
 
-npm install react-redux-bangla-intl --save-dev
+`npm install react-redux-bangla-intl --save-dev`
+
+    ### add BanglaIntl Reducer to your store
+##### =at `store.js`
+```
+..... your other imports....
+import {reducer as BanglaIntlReducer} from 'react-redux-bangla-intl';
+#import {reducerImmutable as BanglaIntlReducer} from 'react-redux-bangla-intl'; // reducer for immutablejs store.
+import { combineReducers } from 'redux';
+#import { combineReducers } from 'redux-immutable'; // when immutablejs used.
+```
+
+const store = combineReducers({
+    ..other reducers..
+    locale : BanglaIntlReducer,
+});
+
+export default store;
 
 ## API Reference
 
